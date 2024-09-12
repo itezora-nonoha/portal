@@ -35,4 +35,23 @@ proc cas;
 quit;
 ```
 
- 
+https:/go.documentation.sas.com/doc/ja/pgmsascdc/v_037/caspg/cas-table-tableexists.htm
+
+#### table.promote
+
+- CASメモリ上のテーブルを「セッションスコープ」から「グローバルスコープ」に格上げする
+
+### その他
+
+#### ds2.runModel
+- DS2モデルを実行する
+https://go.documentation.sas.com/doc/ja/pgmsascdc/v_037/caspg/cas-ds2-runmodel.htm
+
+#### sccasl.runCasl
+- サーバ側のCASLコードを実行する
+
+https://go.documentation.sas.com/doc/ja/pgmsascdc/v_037/caspg/cas-sccasl-runcasl.htm
+
+
+
+
