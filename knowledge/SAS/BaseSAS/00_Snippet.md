@@ -63,7 +63,7 @@ run;
 - dataステップ内では`put`、マクロ内では`%put`を使用する。
   - データセット内の変数を出力する場合は、シングルクォートやダブルクォートで括る必要はなく、変数名をそのまま指定する。
   - 複数の内容を連結して出力する場合、`put`は半角スペースで並べて記載、`%put`は`||`や`cats()`で明示的に結合して記載する。
-  - `put`でデータセットの列を並べて記載した際、不要な半角スペースが付与されてしまう場合は、列名の直後に`+(-1)`を記載しておく。
+  - `put`でデータセットの列を並べて記載した際、不要な半角スペースが付与されてしまう場合は、列名の直後に`+(-1)`を記載しておく。（詳細はputステートメントのリファレンスに記載されている）
 
 ``` sas
 %let val = test;
@@ -79,6 +79,9 @@ run;
 
 ### 外部ファイルにテキストを出力する
 - `filename`および`file`ステートメントを使用する。
+  - `filename` ... 「SASファイル参照名」と「外部ファイルまたは出力デバイス」の関連付け・関連付けの解除を行う。
+  - `file` ... putステートメントの出力先ファイルを指定する。
+ 
 ```sas
 data _null_;
     filename OUTFILE "file_path";
@@ -128,3 +131,86 @@ run;
 ### dataステップ内のset句で読み込んだデータセットに、行番号を付与する
 - `set データセット名 CUROBS=一時変数名`で新しい列に行番号を挿入できる。
 
+### proc sqlでのサブクエリの使用
+- 通常のSQLのように記述できる。
+
+### 列名を変更してデータセットを読み込む
+- `set work.table1(rename_(new_column_name=old_column_name));`のように`rename`を使用する。
+
+### 文字列の長さに合わせてブロックコメントを生成する
+
+- `length()`および`klength()`を組み合わせ、マルチバイト文字を含めたいい感じの文字長を計算し、ブロックコメントを生成する。
+
+``` sas
+data _null_;
+    comment_text = strip(&comment_contents.);
+    comment_len = (length(comment_text) - klength(comment_text)) / 2 + klength(comment_text);
+    comment_line = '/*-' || repeat('-', comment_len - 1) || '-*/';
+    put comment_line;
+    put '/* ' "&comment_contents." ' */';
+    put comment_line;
+run;
+```
+
+### 指定の文字列をN回繰り返した文字列を用意する
+- dataステップ内で`repeat(繰り返したい文字, N - 1);`を使用する。
+
+### Excelファイルを読み込み、データセット化する
+- `proc import`を使用する。
+
+``` sas
+%macro ImportExcel(i_file_path=, i_sheet_name=, ods_output_name=);
+    proc import datafile=&i_file_path;
+        replace
+        dbms = xlsx
+        out &ods_output_name.;
+        getnames = yes;
+        sheet = &i_sheet_name.;
+    run;
+%mend ImportExcel;
+```
+
+### set句で読み込む行の条件を指定する
+- `whereデータセットオプション`を使用する。
+
+``` sas
+data work.cars;
+    set sashelp.cars(where=(weight>6000));
+run;
+```
+
+### proc sql内で「欠損値かどうか」の条件を指定する
+- `where`ステートメント内で`is missing演算子`を使用する
+
+### proc sqlで取得したクエリ結果を、区切り文字で結合しマクロ変数に代入する
+- `into: マクロ変数名 separated by '区切り文字'`を用いる。（複数列から出力する場合でもintoは1つだけ．マクロ変数名にコロンを前置する）
+
+``` sas
+proc sql noprint;
+    select Name, Age
+        into :name_list separated by ' ', age_list separated by ' '
+        from sashelp.class
+        where age > 12;
+quit;
+```
+
+### リスト文字列などを指定の区切り文字で区切り、n番目の要素を取り出す
+- `scan(文字列, n, 区切り文字(指定しない場合はあらゆる文字列で分割する))`で取り出す。
+
+### リスト文字列の要素でループする
+- `%do %while`などを組み合わせる。
+
+``` sas
+%macro LoopTest();
+    %let name_list = AAA BBB CCC DDD;
+    %let index = 1;
+    %let name = %scan(&name_list., &index., ' ');
+
+    %do %while(not %sysevalf(%superq(name) =, boolean));
+        %put &name.;
+
+        %let index = %eval(&index. + 1);
+        %let name = %scan(&name_list., &index., ' ');
+    %end;
+%mend LoopTest;
+```
