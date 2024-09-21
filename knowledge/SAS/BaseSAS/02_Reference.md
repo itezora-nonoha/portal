@@ -1,14 +1,52 @@
-- dataステップ
-  - attribステートメント https://go.documentation.sas.com/doc/ja/pgmsascdc/9.4_3.5/lestmtsref/n1wxb7p9jkxycin16lz2db7idbnt.htm
-  - dropステートメント https://go.documentation.sas.com/doc/ja/pgmsascdc/9.4_3.5/lestmtsref/n1capr0s7tilbvn1lypdshkgpaip.htm
-  - setステートメント https://go.documentation.sas.com/doc/ja/pgmsascdc/9.4_3.5/lestmtsref/p00hxg3x8lwivcn1f0e9axziw57y.htm
-    - curobsオプション
-    - endオプション
-- データセット
-  - keepデータセットオプション https://go.documentation.sas.com/doc/ja/pgmsascdc/9.4_3.5/ledsoptsref/p0vw9lyyxk1cxkn0zzfemrsr3t9a.htm
+https://welcome.oda.sas.com/
 
 > 💡 SASデータセットの行と列の表現について
 本来の表記は「オブザベーション」および「変数」ですが、本ドキュメントにおいては「行」と「列」で表記しています。
+
+### まとめ
+
+#### dataステップ
+- attribステートメント https://go.documentation.sas.com/doc/ja/pgmsascdc/9.4_3.5/lestmtsref/n1wxb7p9jkxycin16lz2db7idbnt.htm
+- dropステートメント https://go.documentation.sas.com/doc/ja/pgmsascdc/9.4_3.5/lestmtsref/n1capr0s7tilbvn1lypdshkgpaip.htm
+- setステートメント https://go.documentation.sas.com/doc/ja/pgmsascdc/9.4_3.5/lestmtsref/p00hxg3x8lwivcn1f0e9axziw57y.htm
+  - オプション（`set データセット名`から`;`までの間にスペース区切りで記述）
+    - curobs=
+    - end=
+
+#### データセット
+- keep=データセットオプション https://go.documentation.sas.com/doc/ja/pgmsascdc/9.4_3.5/ledsoptsref/p0vw9lyyxk1cxkn0zzfemrsr3t9a.htm
+- drop=データセットオプション https://go.documentation.sas.com/doc/ja/pgmsascdc/9.4_3.5/ledsoptsref/n15goor3q758g5n1eykstufkpdhy.htm
+- rename=データセットオプション https://go.documentation.sas.com/doc/ja/pgmsascdc/9.4_3.5/ledsoptsref/p09ikb01zz9knnn16y401utyq4un.htm
+- where=データセットオプション https://go.documentation.sas.com/doc/ja/pgmsascdc/9.4_3.5/ledsoptsref/p0ny9o8t8hc5zen1qn3ft9dhtsxx.htm
+
+#### プロシジャ
+- [proc sortステートメント - SAS® Help Center](https://go.documentation.sas.com/doc/ja/pgmsascdc/9.4_3.5/proc/p02bhn81rn4u64n1b6l00ftdnxge.htm)
+  - オプション（`proc sort`から`;`までの間にスペース区切りで記述）
+    - data=
+    - out=
+    - nodupkey
+  - プロシジャ内ステートメント（`proc sort ～;`から`run;`までの行に記述）
+    - by
+    - var
+    - id
+    - idlabel
+- [proc transposeステートメント - SAS® Help Center](https://go.documentation.sas.com/doc/ja/pgmsascdc/9.4_3.5/proc/p1r2tjnp8ewe3sn1acnpnrs3xbad.htm)
+  - オプション（`proc transpose`から`;`までの間にスペース区切りで記述）
+    - data=
+    - out=
+    - prefix=
+    - suffix=
+  - プロシジャ内ステートメント（`proc transpose ～;`から`run;`までの行に記述）
+    - by
+    - var
+    - id
+    - idlabel
+
+#### グローバルステートメント
+- [libnameステートメント](https://documentation.sas.com/doc/ja/pgmsascdc/9.4_3.5/lestmtsglobal/
+- [filenameステートメント](https://documentation.sas.com/doc/ja/pgmsascdc/9.4_3.5/lestmtsglobal/p05r9vhhqbhfzun1qo9mw64s4700.htm)
+- [xステートメント](https://go.documentation.sas.com/doc/ja/pgmsascdc/9.4_3.5/lestmtsglobal/p11ba12uypvfazn1jk7acffuzlbl.htm)
+
 
 
 ### データセットオブション
@@ -100,6 +138,7 @@ run;
 |var|列名|転置する列を指定|
 |id|列名|列の内容を「転置後の列名」として使用する列を指定|
 |idlabel|列名|転置後の変数ラベルとして使用する変数を指定|
+
 
 
 
