@@ -249,13 +249,20 @@ run;
 
 #### 日時データの利用
 
+- [YYMMDDx出力形式](https://documentation.sas.com/doc/ja/vdmmlcdc/8.1/leforinforref/p0iptsg6780kzfn1k5f0b8s7k7dq.htm)
+
 ``` sas
 data work.date_info;
 	now_datetime = datetime(); 
 	now_date = datepart(now_datetime);
 	now_time = timepart(now_datetime);
 	
-	yyyymmdd8 = put(now_date, yymmddn8.); /* yyyymmdd */
+	yyyymmddn = put(now_date, yymmddn8.); /* yyyymmdd(n:区切り文字なし) */
+	yyyymmddb = put(now_date, yymmddb8.); /* yyyymmdd(b:スペース区切り) */
+	yyyymmddc = put(now_date, yymmddc8.); /* yyyymmdd(c:コロン区切り) */
+	yyyymmddd = put(now_date, yymmddd8.); /* yyyymmdd(d:コロン区切り) */
+	yyyymmddp = put(now_date, yymmddp8.); /* yyyymmdd(p:ピリオド区切り) */
+	yyyymmdds = put(now_date, yymmdds8.); /* yyyymmdd(s:スラッシュ区切り) */
 	yyyymdd10 = put(now_date, yymmdd10.); /* yyyy-mm-dd */
 	ddmmmyyyy = put(now_date, date10.); /* ddmmmyyyy */
 	hhmmss = put(now_time, time.); /* hh:mm:ss */
@@ -345,3 +352,8 @@ proc import datafile=test_data out=work.test dbms=csv replace;
     datarow = 2;
 run;
 ```
+
+### xステートメント(グローバルステートメント)
+
+- OSコマンドを実行する
+  - [xステートメント](https://go.documentation.sas.com/doc/ja/pgmsascdc/9.4_3.5/lestmtsglobal/p11ba12uypvfazn1jk7acffuzlbl.htm)
