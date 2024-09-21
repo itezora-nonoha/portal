@@ -54,10 +54,12 @@ run;
 
 ### 外部ファイルの存在を確認する
 - dataステップ内で`fileexist()`を使用する。存在する場合は`1`、存在しない場合は`0`が返却される。
+  - [FILEEXIST関数 - SAS® Help Center](https://go.documentation.sas.com/doc/ja/pgmsascdc/9.4_3.5/lefunctionsref/n06xm8hwk0t0axn10gj16lfiri43.htm)
 
 ### 文字列を置換する
 - `tranwrd()`を使用する。
   -`tranwrd(変換したい文字列, 検索文字列, 置換する文字列)`
+  - [TRANWRD関数 - SAS® Help Center](https://go.documentation.sas.com/doc/ja/pgmsascdc/9.4_3.5/lefunctionsref/p0pgemqcslm9uen1tvr5gcrusgrw.htm)
 
 ### dataステップ内のset句で読み込んだデータセットに、行番号を付与する
 - `set データセット名 CUROBS=一時変数名`で新しい列に行番号を挿入できる。
