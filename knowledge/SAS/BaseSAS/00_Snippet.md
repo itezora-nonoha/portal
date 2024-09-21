@@ -153,14 +153,14 @@ run;
 ### 外部CSVファイルをproc importプロシジャで読み込み、データセット化する
 
 ``` sas
-proc import datafile="C:\SAS_Study\test.csv" out=work.work.test dbms=csv replace;
+proc import datafile='C:\SAS_Study\test.csv' out=work.work.test dbms=csv replace;
     getnames = yes;
     datarow = 2;
 run;
 ```
 
 ``` sas
-filename input_data = "C:\SAS_Study\input_data.txt" 
+filename input_data = 'C:\SAS_Study\input_data.txt' 
 proc import datafile=input_data out=work.test dbms= replace;
     getnames = yes;
 run;
