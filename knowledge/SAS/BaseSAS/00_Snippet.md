@@ -72,7 +72,7 @@ run;
 
 ``` sas
 data _null_;
-    set sashelp.class
+    set sashelp.class;
     put Name +(-1) ', ' Age ;
 run;
 ```
@@ -140,6 +140,7 @@ run;
 ### 文字列の長さに合わせてブロックコメントを生成する
 
 - `length()`および`klength()`を組み合わせ、マルチバイト文字を含めたいい感じの文字長を計算し、ブロックコメントを生成する。
+  - 実行環境によってはうまくいかないこともある。
 
 ``` sas
 data _null_;
