@@ -1,6 +1,7 @@
 > 「記述しているSnippet」の内容がポイントになる内容を記載。
 
 ### よく使うシステムオプション
+- [カテゴリ別のシステムオプション - SAS® Help Center](https://go.documentation.sas.com/doc/ja/pgmsascdc/9.4_3.5/lesysoptsref/p0r3gu6wvyq0l0n1gkadgl7iukfm.htm)
 
 #### ログを簡素化する
 
@@ -32,6 +33,7 @@ run;
 
 ### SASデータセットの各行の値を(任意の区切り文字)で結合し、文字列としてマクロ変数に格納する
 - `retain`や`end = eof`を活用する。
+  - [RETAINステートメント - SAS® Help Center](https://go.documentation.sas.com/doc/ja/pgmsascdc/9.4_3.5/lestmtsref/p0t2ac0tfzcgbjn112mu96hkgg9o.htm) 
 
 ``` sas
 data _null_;
@@ -125,6 +127,7 @@ run;
 
 ### proc sqlで取得したクエリ結果を、区切り文字で結合しマクロ変数に代入する
 - `into: マクロ変数名 separated by '区切り文字'`を用いる。（複数列から出力する場合でもintoは1つだけ．マクロ変数名にコロンを前置する）
+  - [INTO句 - SAS® Help Center](https://go.documentation.sas.com/doc/ja/pgmsascdc/9.4_3.5/mcrolref/n1y2jszlvs4hugn14nooftfrxhp3.htm) 
 
 ``` sas
 proc sql noprint;
