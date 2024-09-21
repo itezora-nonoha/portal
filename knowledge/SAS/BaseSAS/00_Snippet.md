@@ -109,22 +109,6 @@ data _null_;
 run;
 ```
 
-
-### Excelファイルを読み込み、データセット化する
-- `proc import`を使用する。
-
-``` sas
-%macro ImportExcel(i_file_path=, i_sheet_name=, ods_output_name=);
-    proc import datafile=&i_file_path;
-        replace
-        dbms = xlsx
-        out &ods_output_name.;
-        getnames = yes;
-        sheet = &i_sheet_name.;
-    run;
-%mend ImportExcel;
-```
-
 ### proc sqlで取得したクエリ結果を、区切り文字で結合しマクロ変数に代入する
 - `into: マクロ変数名 separated by '区切り文字'`を用いる。（複数列から出力する場合でもintoは1つだけ．マクロ変数名にコロンを前置する）
   - [INTO句 - SAS® Help Center](https://go.documentation.sas.com/doc/ja/pgmsascdc/9.4_3.5/mcrolref/n1y2jszlvs4hugn14nooftfrxhp3.htm) 
@@ -155,3 +139,43 @@ quit;
     %end;
 %mend LoopTest;
 ```
+
+### 外部CSVファイルをdataステップで読み込み、データセット化する
+
+``` sas
+filename sample "C:\SAS_Study\test2.csv";
+data work.test;
+    infile sample dim="," firstobs=2;
+    input id:$8. name:$32. class:8.;
+run;
+```
+
+### 外部CSVファイルをproc importプロシジャで読み込み、データセット化する
+
+``` sas
+proc import datafile="C:\SAS_Study\test.csv" out=work.work.test dbms=csv replace;
+    getnames = yes;
+    datarow = 2;
+run;
+```
+
+``` sas
+filename input_data = "C:\SAS_Study\input_data.txt" 
+proc import datafile=input_data out=work.test dbms= replace;
+    getnames = yes;
+run;
+```
+
+
+### Excelファイルを読み込み、データセット化する
+- `proc import`を使用する。
+
+``` sas
+%macro ImportExcel(i_file_path=, i_sheet_name=, ods_output_name=);
+    proc import datafile=&i_file_path out=&ods_output_name. dbms = xlsx replace;
+        getnames = yes;
+        sheet = &i_sheet_name.;
+    run;
+%mend ImportExcel;
+```
+
