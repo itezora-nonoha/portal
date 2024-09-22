@@ -43,7 +43,7 @@ https://welcome.oda.sas.com/
     - idlabel
 
 #### グローバルステートメント
-- [libnameステートメント](https://documentation.sas.com/doc/ja/pgmsascdc/9.4_3.5/lestmtsglobal/
+- [libnameステートメント](https://documentation.sas.com/doc/ja/pgmsascdc/9.4_3.5/lestmtsglobal/)
 - [filenameステートメント](https://documentation.sas.com/doc/ja/pgmsascdc/9.4_3.5/lestmtsglobal/p05r9vhhqbhfzun1qo9mw64s4700.htm)
 - [xステートメント](https://go.documentation.sas.com/doc/ja/pgmsascdc/9.4_3.5/lestmtsglobal/p11ba12uypvfazn1jk7acffuzlbl.htm)
 

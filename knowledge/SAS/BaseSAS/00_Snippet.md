@@ -6,7 +6,7 @@
 #### ログを簡素化する
 
 ``` sas
-option nosourcen onotes;
+option nosource nonotes;
 ```
 
 - `nosource` ... ソースステートメント（実行しているSASコードの内容）をSASログに表示しないようにする
