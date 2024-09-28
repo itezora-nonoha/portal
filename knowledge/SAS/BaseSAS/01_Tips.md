@@ -76,7 +76,7 @@ run;
 - 通常のSQLのように記述できる。
 
 ### 列名を変更してデータセットを読み込む
-- `set work.table1(rename_(new_column_name=old_column_name));`のように`rename`を使用する。
+- `set work.table1(rename=(new_column_name=old_column_name));`のように`rename`を使用する。
 
 
 ### 指定の文字列をN回繰り返した文字列を用意する
